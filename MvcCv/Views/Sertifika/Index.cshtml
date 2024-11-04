@@ -1,0 +1,65 @@
+﻿@model List<MvcCv.Models.Entity.TblSertifikalarim>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int count = 1;
+    string renk, renk2;
+    
+}
+
+<h2>Index</h2>
+
+<!DOCTYPE html>
+<html>
+<body class="hold-transition sidebar-mini">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header p-2">
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-pane" id="timeline">
+                                <div class="timeline timeline-inverse">
+                                    @foreach (var item in Model)
+                                    {
+                                        if (count % 2 == 0)
+                                        {
+                                            renk = "btn btn-success";
+                                            renk2 = "bg-success";
+                                        }
+                                        else
+                                        {
+                                            renk = "btn btn-info";
+                                            renk2 = "bg-info";
+                                        }
+                                        <div class="time-label">
+                                            <a href="/Sertifika/SertifikaGetir/@item.ID/" class="@renk">
+                                                <span class="@renk2">
+                                                    @item.Tarih
+                                                </span>
+                                            </a>
+                                        </div>
+                                        <div>
+
+                                            <div class="timeline-item">
+                                                <div class="timeline-body">
+                                                    @item.Aciklama
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        count++;
+                                    }
+                                </div>
+                                <a href="/Sertifika/YeniSertifika/" class="btn btn-info">Yeni Sertifika Girişi</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
